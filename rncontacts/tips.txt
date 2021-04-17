@@ -9,3 +9,5 @@ yarn add @react-navigation/stack
 
 ------------- drawer navigator
 yarn add @react-navigation/drawer
+
+

@@ -9,7 +9,7 @@ export default function AuthNavigator() {
   const AuthStack = createStackNavigator();
 
   return (
-    <AuthStack.Navigator>
+    <AuthStack.Navigator screenOptions={{headerShown: false}}>
       <AuthStack.Screen name={LOGIN} component={Login}></AuthStack.Screen>
 
       <AuthStack.Screen name={REGISTER} component={Register}></AuthStack.Screen>
