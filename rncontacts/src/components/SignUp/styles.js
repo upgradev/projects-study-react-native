@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
 import colors from '../../assets/theme/colors';
-// import colors from '../../../assets/theme/colors';
 
 export default StyleSheet.create({
   logoImage: {
@@ -9,18 +8,16 @@ export default StyleSheet.create({
     alignSelf: 'center',
     marginTop: 50,
   },
-
   title: {
     fontSize: 21,
     textAlign: 'center',
     paddingTop: 20,
     fontWeight: '500',
   },
-
   subTitle: {
     fontSize: 17,
     textAlign: 'center',
-    paddingVertical: 20,
+    paddingTop: 20,
     fontWeight: '500',
   },
   form: {
@@ -28,14 +25,14 @@ export default StyleSheet.create({
   },
   createSection: {
     flexDirection: 'row',
+    marginBottom: 30
   },
   linkBtn: {
     paddingLeft: 17,
     color: colors.primary,
     fontSize: 16,
   },
-
   infoText: {
-    fontSize: 17
+      fontSize: 17
   }
 });

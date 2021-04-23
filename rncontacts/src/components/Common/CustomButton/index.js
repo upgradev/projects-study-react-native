@@ -1,30 +1,29 @@
 import React, {useState} from 'react';
 import {
-  View,
+  ActivityIndicator,
   Text,
   TextInput,
   TouchableOpacity,
-  ActivityIndicator,
+  View,
 } from 'react-native';
 import colors from '../../../assets/theme/colors';
 import styles from './styles';
 
-export default function CustomButton({
+const CustomButton = ({
   title,
-  disabled,
-  loading,
   secondary,
   primary,
   danger,
+  disabled,
+  loading,
   onPress,
-}) {
+}) => {
   const [focused, setFocused] = useState(false);
 
   const getBgColor = () => {
     if (disabled) {
       return colors.grey;
     }
-
     if (primary) {
       return colors.primary;
     }
@@ -38,21 +37,19 @@ export default function CustomButton({
 
   return (
     <TouchableOpacity
-      style={[styles.wrapper, {backgroundColor: getBgColor()}]}
+      onPress={onPress}
       disabled={disabled}
-      onPress={onPress}>
+      style={[styles.wrapper, {backgroundColor: getBgColor()}]}>
       <View style={[styles.loaderSection]}>
-        {loading && <ActivityIndicator color={primary ? colors.secondary: colors.primary} />}
+        {loading && <ActivityIndicator color={primary ? colors.secondary : colors.primary} />}
         {title && (
-          <Text
-            style={{
-              color: disabled ? 'black' : colors.white,
-              paddingLeft: loading ? 5 : 0,
-            }}>
+          <Text style={{color: disabled ? 'black' : colors.white, paddingLeft: loading? 5 : 0}}>
             {title}
           </Text>
         )}
       </View>
     </TouchableOpacity>
   );
-}
+};
+
+export default CustomButton;

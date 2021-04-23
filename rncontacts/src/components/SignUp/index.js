@@ -1,22 +1,22 @@
 import React from 'react';
-import {View, Text, TextInput, Image, TouchableOpacity} from 'react-native';
-import Container from '../../components/common/Container';
-import CustomButton from '../../components/common/CustomButton';
-import Input from '../../components/common/input';
+import {Image, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import Container from '../../components/Common/Container';
+import CustomButton from '../../components/Common/CustomButton';
+import Input from '../../components/Common/Input';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
-import LOGIN from '../../screens/Login';
+import {LOGIN} from '../../constants/routeNames';
 
-export default function RegisterComponent({onSubmit, onChange, form, errors}) {
+const RegisterComponent = ({onChange, onSubmit, form, errors}) => {
   const {navigate} = useNavigation();
-  
+
   return (
     <Container>
       <Image
         height={70}
         width={70}
-        style={styles.logoImage}
         source={require('../../assets/images/logo.png')}
+        style={styles.logoImage}
       />
 
       <View>
@@ -25,20 +25,20 @@ export default function RegisterComponent({onSubmit, onChange, form, errors}) {
 
         <View style={styles.form}>
           <Input
-            label="User Name"
+            label="Username"
             iconPosition="right"
-            placeholder="Enter User Name"
-            onChangeText={(value) => {
+            placeholder="Enter username"
+            error={errors.userName}
+            onChangeText={value => {
               onChange({name: 'userName', value: value});
             }}
-            error={errors.userName}
           />
 
           <Input
             label="First Name"
             iconPosition="right"
-            placeholder="Enter First Name"
-            onChangeText={(value) => {
+            placeholder="Enter first name"
+            onChangeText={value => {
               onChange({name: 'firstName', value: value});
             }}
             error={errors.firstName}
@@ -47,9 +47,9 @@ export default function RegisterComponent({onSubmit, onChange, form, errors}) {
           <Input
             label="Last Name"
             iconPosition="right"
-            placeholder="Enter Last Name"
+            placeholder="Enter Last name"
             error={errors.lastName}
-            onChangeText={(value) => {
+            onChangeText={value => {
               onChange({name: 'lastName', value: value});
             }}
           />
@@ -59,7 +59,7 @@ export default function RegisterComponent({onSubmit, onChange, form, errors}) {
             iconPosition="right"
             placeholder="Enter Email"
             error={errors.email}
-            onChangeText={(value) => {
+            onChangeText={value => {
               onChange({name: 'email', value: value});
             }}
           />
@@ -67,27 +67,29 @@ export default function RegisterComponent({onSubmit, onChange, form, errors}) {
           <Input
             label="Password"
             placeholder="Enter Password"
-            secureTextEntry={true}
             icon={<Text>Show</Text>}
             iconPosition="right"
+            secureTextEntry={true}
             error={errors.password}
-            onChangeText={(value) => {
+            onChangeText={value => {
               onChange({name: 'password', value: value});
             }}
           />
-
-          {/* <CustomButton secondary title="submit" loading={true} disabled={true} />
-      <CustomButton secondary loading title="Click Me" /> */}
-          <CustomButton onPress={onSubmit} primary title="Submit"  />
-          {/* <CustomButton danger title="submit" /> */}
+          <CustomButton primary onPress={onSubmit} title="Submit" />
           <View style={styles.createSection}>
-            <Text style={styles.infoText}>Need a new account? </Text>
+            <Text style={styles.infoText}>Already have a Account?</Text>
             <TouchableOpacity onPress={() => navigate(LOGIN)}>
               <Text style={styles.linkBtn}>Login</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
+      {/* <CustomButton secondary title="Submit" loading={true} disabeld={true} />
+      <CustomButton secondary loading title="Click Me" /> */}
+
+      {/* <CustomButton danger title="Submit" /> */}
     </Container>
   );
-}
+};
+
+export default RegisterComponent;

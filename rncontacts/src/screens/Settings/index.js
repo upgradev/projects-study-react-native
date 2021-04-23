@@ -1,10 +1,10 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import { View } from 'react-native';
 
-export default function Settings() {
-  return (
-    <View>
-      <Text>Register</Text>
-    </View>
-  );
+// import { Container } from './styles';
+
+const Settings = () => {
+  return <View />;
 }
+
+export default Settings;

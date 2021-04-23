@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
+import LoginComponent from '../../components/Login'
 
-import LoadingComponent from '../../components/Login'
-
-export default function Login() {
-  const [value, onChnageText] = useState("");
+const Login = () => {
+  const [value, onChangetext] = useState('');
 
   return (
-    <LoadingComponent />
-    
+    <LoginComponent />
   );
-}
+};
+
+export default Login;

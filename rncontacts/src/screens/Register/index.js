@@ -1,73 +1,79 @@
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 import RegisterComponent from '../../components/SignUp';
+import envs from '../../config/env';
 
-export default function Register() {
+const Register = () => {
   const [form, setForm] = useState({});
-  const [errors, setErros] = useState({});
+  const [errors, setErrors] = useState({});
+  const {DEV_BACKEND_URL} = envs;
+
+  
 
   const onChange = ({name, value}) => {
     setForm({...form, [name]: value});
+
     if (value !== '') {
       if (name === 'password') {
         if (value.length < 6) {
-          setErros(prev => {
-            return {...prev, [name]: 'This field needs minimal 6 characters'};
+          setErrors(prev => {
+            return {...prev, [name]: 'This field needs minimal 6 caracters'};
           });
         } else {
-          setErros(prev => {
+          setErrors(prev => {
             return {...prev, [name]: null};
           });
         }
       } else {
-        setErros(prev => {
+        setErrors(prev => {
           return {...prev, [name]: null};
         });
       }
     } else {
-      setErros(prev => {
+      setErrors(prev => {
         return {...prev, [name]: 'This field is required'};
       });
     }
   };
 
   const onSubmit = () => {
+    console.log(form);
+
     if (!form.userName) {
-      setErros(prev => {
-        return {...prev, userName: 'Please add a user name'};
+      setErrors(prev => {
+        return {...prev, userName: 'Please add username'};
       });
     }
-
     if (!form.firstName) {
-      setErros(prev => {
-        return {...prev, firstName: 'Please add a first name'};
+      setErrors(prev => {
+        return {...prev, firstName: 'Please add First name'};
       });
     }
-
     if (!form.lastName) {
-      setErros(prev => {
-        return {...prev, lastName: 'Please add a last name'};
+      setErrors(prev => {
+        return {...prev, lastName: 'Please add last name'};
       });
     }
-
     if (!form.email) {
-      setErros(prev => {
-        return {...prev, email: 'Please add a email'};
+      setErrors(prev => {
+        return {...prev, email: 'Please add email'};
       });
     }
     if (!form.password) {
-      setErros(prev => {
-        return {...prev, password: 'Please add a password'};
+      setErrors(prev => {
+        return {...prev, password: 'Please add password'};
       });
     }
   };
 
   return (
     <RegisterComponent
-      onSubmit={onSubmit}
       onChange={onChange}
+      onSubmit={onSubmit}
       form={form}
       errors={errors}
     />
   );
-}
+};
+
+export default Register;

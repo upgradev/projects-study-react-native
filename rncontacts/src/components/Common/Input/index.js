@@ -1,26 +1,25 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {Text, TextInput, View} from 'react-native';
 import colors from '../../../assets/theme/colors';
 import styles from './styles';
 
-export default function Input({
+const Input = ({
   onChangeText,
   icon,
-  iconPosition,
   style,
   value,
   label,
+  iconPosition,
   error,
   ...props
-}) {
+}) => {
   const [focused, setFocused] = useState(false);
 
   const getFlexDirection = () => {
     if (icon && iconPosition) {
       if (iconPosition === 'left') {
         return 'row';
-      }
-      if (iconPosition === 'right') {
+      } else if (iconPosition === 'right') {
         return 'row-reverse';
       }
     }
@@ -29,39 +28,39 @@ export default function Input({
   const getBorderColor = () => {
     if (error) {
       return colors.danger;
-    } 
+    }
     if (focused) {
       return colors.primary;
-    }
-    else {
+    } else {
       return colors.grey;
     }
   };
+
   return (
     <View style={styles.inputContainer}>
       {label && <Text>{label}</Text>}
       <View
         style={[
           styles.wrapper,
-          {alignItems: icon ? "center" : "baseline"},
+          {alignItems: icon ? 'center' : 'baseline'},
           {borderColor: getBorderColor(), flexDirection: getFlexDirection()},
         ]}>
         <View>{icon && icon}</View>
+
         <TextInput
-          style={[style, styles.textInput]}
-          onChangeText={onChangeText}
+          style={[styles.textInput, style]}
           value={value}
-          onFocus={() => {
-            setFocused(true);
-          }}
+          onChangeText={onChangeText}
+          onFocus={() => setFocused(true)}
           onBlur={() => {
             setFocused(false);
           }}
           {...props}
         />
       </View>
-
       {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
-}
+};
+
+export default Input;

@@ -4,24 +4,22 @@ import colors from '../../../assets/theme/colors';
 export default StyleSheet.create({
   wrapper: {
     height: 42,
-    borderWidth: 1,
-    borderRadius: 4,
     paddingHorizontal: 5,
-    marginTop: 5,
+    marginVertical: 5,
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
   },
-
   textInput: {
     flex: 1,
-    width: "100%"
+    width: '100%',
   },
-
-  inputContainer: {
-    paddingVertical: 12,
+  loaderSection: {
+    flexDirection: 'row',
   },
-
   error: {
     color: colors.danger,
     paddingTop: 4,
-    fontSize: 12
+    fontSize: 12,
   },
 });

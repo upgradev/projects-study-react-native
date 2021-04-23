@@ -1,10 +1,11 @@
-const auth = (state, {type, payload}) => {
+const contacts = (state, {type, payload}) => {
   switch (type) {
-    case 'GET_CONTACTS':
+    case 'LOGIN':
       return state;
+
     default:
       return state;
   }
 };
 
-export default auth;
+export default contacts;
