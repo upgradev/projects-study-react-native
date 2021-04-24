@@ -1,22 +1,11 @@
-1. Clear watchman watches: watchman watch-del-all
-2. Delete node_modules and run yarn install
-3. Reset Metro's cache: yarn start --reset-cache
-4. Remove the cache: rm -rf /tmp/metro-*
-
-
--------------react navigation
+------------navigation
 yarn add @react-navigation/native
 yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-inserir no index.js
-import 'react-native-gesture-handler';
-
-------------- stack navigator
+importar no App.js ou index.js -> import 'react-native-gesture-handler';
 yarn add @react-navigation/stack
 
-------------- drawer navigator
+------------Drawer navigation
 yarn add @react-navigation/drawer
 
+-------------if programmer for ios install : npx pod-install ios
 
-------------- enviroment variables
-https://github.com/goatandsheep/react-native-dotenv
-yarn add react-native-dotenv

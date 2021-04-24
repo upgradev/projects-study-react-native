@@ -1,10 +1,12 @@
-import React from 'react';
-import { View } from 'react-native';
+import React from 'react'
+import {View, Text} from 'react-native';
 
-// import { Container } from './styles';
-
-const ContactDetail = () => {
-  return <View />;
+function ContactDetail() {
+  return (
+    <View>
+      <Text>Hi from ContactDetail</Text>
+    </View>
+  );
 }
 
 export default ContactDetail;

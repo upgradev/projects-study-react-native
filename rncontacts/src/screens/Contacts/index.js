@@ -1,14 +1,11 @@
-import React from 'react';
-import { Text, View } from 'react-native';
-import Container from '../../components/Common/Container';
+import React from 'react'
+import {View, Text} from 'react-native';
 
-// import { Container } from './styles';
-
-const Contacts = () => {
+function Contacts() {
   return (
-    <Container>
-      <Text>Ola</Text>
-    </Container>
+    <View>
+      <Text>Hi from Contacts</Text>
+    </View>
   );
 }
 
