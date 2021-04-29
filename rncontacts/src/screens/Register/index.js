@@ -9,6 +9,7 @@ import {useNavigation, useFocusEffect} from '@react-navigation/native';
 
 function Register() {
   const [form, setForm] = useState({});
+  const {navigate} = useNavigation();
   const [errors, setErrors] = useState({});
   const {
     authDispatch,
@@ -17,7 +18,7 @@ function Register() {
 
   // console.log('form', form);
 
-  const {navigate} = useNavigation();
+ 
 
   useEffect(() => {
     if (data) {
@@ -27,9 +28,13 @@ function Register() {
 
   useFocusEffect(
     useCallback(() => {
-      if (data || error) {
+
+      return () => {
+        if (data || error) {
         clearAuthState()(authDispatch)
       }
+      }
+      
     }, [data, error]),
   );
 

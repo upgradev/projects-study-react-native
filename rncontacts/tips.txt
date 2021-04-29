@@ -43,3 +43,6 @@ create file in the helpers and config axios and async for store the token
 create in folder action auth/register for dispatch and in the context
 create in constants folder actionTypes/index.js
 next edit file in reducers/auth
+
+anna
+12345678

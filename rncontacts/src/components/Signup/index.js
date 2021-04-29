@@ -6,6 +6,7 @@ import Container from '../common/Container';
 import styles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {LOGIN} from '../../constants/routeNames';
+import Message from '../common/Message';
 
 const RegisterComponent = ({
   onSubmit,
@@ -31,7 +32,16 @@ const RegisterComponent = ({
         <Text style={styles.subTitle}>Create a free account</Text>
 
         <View style={styles.form}>
-          {error?.error && <Text> {error.error} </Text> }
+          {error?.error && (
+            <Message
+              retry
+              danger
+              retryFn={() => {
+                console.log('aqui');
+              }}
+              message={error?.error}
+            />
+          )}
           <Input
             label="Username"
             onChangeText={text => setValue(text)}
