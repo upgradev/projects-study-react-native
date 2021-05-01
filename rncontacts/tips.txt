@@ -44,5 +44,7 @@ create in folder action auth/register for dispatch and in the context
 create in constants folder actionTypes/index.js
 next edit file in reducers/auth
 
-anna
-12345678
+------------- react native vector icons
+https://github.com/oblador/react-native-vector-icons#installation
+yarn add react-native-vector-icons
+

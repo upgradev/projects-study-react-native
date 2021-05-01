@@ -8,15 +8,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Container from '../../components/common/Container';
-import { LOGOUT_USER } from '../../constants/actionTypes';
+import {LOGOUT_USER} from '../../constants/actionTypes';
 import {SETTINGS} from '../../constants/routeNames';
 import logoutUser from '../../context/actions/auth/logoutUser';
 import styles from './styles';
+import MaterialIcons from '../../components/common/Icon';
 
 const SideMenu = ({navigation, authDispatch}) => {
-
-
-
   const handleLogout = () => {
     navigation.toggleDrawer();
     Alert.alert('Logout!', 'Are you sure you want to logout?', [
@@ -27,7 +25,7 @@ const SideMenu = ({navigation, authDispatch}) => {
       {
         text: 'Ok',
         onPress: () => {
-          logoutUser(LOGOUT_USER)(authDispatch)
+          logoutUser(LOGOUT_USER)(authDispatch);
         },
       },
     ]);
@@ -35,13 +33,17 @@ const SideMenu = ({navigation, authDispatch}) => {
 
   const menuItems = [
     {
-      icon: <Text>T</Text>,
+      icon: <MaterialIcons type="material" size={17} name="settings"></MaterialIcons>,
       name: 'Settings',
       onPress: () => {
         navigation.navigate(SETTINGS);
       },
     },
-    {icon: <Text>T</Text>, name: 'Logout', onPress: handleLogout},
+    {
+      icon: <MaterialIcons type="material" size={17} name="logout"></MaterialIcons>,
+      name: 'Logout',
+      onPress: handleLogout,
+    },
   ];
 
   return (

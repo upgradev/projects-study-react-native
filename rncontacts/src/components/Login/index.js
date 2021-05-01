@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import CustomButton from '../common/CustomButton';
 import Input from '../common/Input';
@@ -8,8 +8,9 @@ import {useNavigation} from '@react-navigation/native';
 import {REGISTER} from '../../constants/routeNames';
 import Message from '../common/Message';
 
-const index = ({error, onChange, onSubmit, loading}) => {
+const index = ({error, onChange, justSignedUp, onSubmit, loading, form}) => {
   const {navigate} = useNavigation();
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
 
   return (
     <Container>
@@ -25,6 +26,13 @@ const index = ({error, onChange, onSubmit, loading}) => {
         <Text style={styles.subTitle}>Please Login here</Text>
 
         <View style={styles.form}>
+          {justSignedUp && (
+            <Message
+              onDismiss={() => {}}
+              success
+              message="Account created successfully"
+            />
+          )}
           {error && !error.error && (
             <Message
               onDismiss={() => {}}
@@ -39,14 +47,22 @@ const index = ({error, onChange, onSubmit, loading}) => {
             onChangeText={text => setValue(text)}
             placeholder="Enter Username"
             onChangeText={value => onChange({name: 'userName', value: value})}
+            value={form.userName || null}
           />
 
           <Input
             label="Password"
             placeholder="Enter Password"
-            icon={<Text>Show</Text>}
+            icon={
+              <TouchableOpacity
+                onPress={() => {
+                  setIsSecureEntry(prev => !prev);
+                }}>
+                <Text>{isSecureEntry ? 'Show' : 'Hide'}</Text>
+              </TouchableOpacity>
+            }
             iconPosition="right"
-            secureTextEntry={true}
+            secureTextEntry={isSecureEntry}
             onChangeText={value => onChange({name: 'password', value: value})}
           />
 

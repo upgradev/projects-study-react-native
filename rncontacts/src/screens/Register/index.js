@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import RegisterComponent from '../../components/Signup';
 import {LOGIN} from '../../constants/routeNames';
-import  register, { clearAuthState } from '../../context/actions/auth/register';
+import register, {clearAuthState} from '../../context/actions/auth/register';
 import {GlobalContext} from '../../context/Provider';
 import axios from '../../helpers/axiosInterceptor';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
@@ -18,23 +18,19 @@ function Register() {
 
   // console.log('form', form);
 
- 
-
-  useEffect(() => {
-    if (data) {
-      navigate(LOGIN);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     // navigate(LOGIN);
+  //   }
+  // }, [data]);  
 
   useFocusEffect(
     useCallback(() => {
-
       return () => {
         if (data || error) {
-        clearAuthState()(authDispatch)
-      }
-      }
-      
+          clearAuthState()(authDispatch);
+        }
+      };
     }, [data, error]),
   );
 
@@ -102,7 +98,9 @@ function Register() {
       Object.values(form).every(item => item.trim().length > 0) &&
         Object.values(errors).every(item => !item))
     ) {
-      register(form)(authDispatch);
+      register(form)(authDispatch)((response) => {
+        navigate(LOGIN, {data: response});
+      });
     }
   };
 
