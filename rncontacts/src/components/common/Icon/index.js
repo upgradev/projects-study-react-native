@@ -14,7 +14,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
-const getIconFont = type => {
+const getIconFont = (type) => {
   switch (type) {
     case 'fontisto':
       return Fontisto;

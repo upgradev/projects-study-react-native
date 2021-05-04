@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, TextInput} from 'react-native';
 import colors from '../../../assets/theme/colors';
 import styles from './styles';
@@ -13,7 +13,7 @@ const Input = ({
   error,
   ...props
 }) => {
-  const [focused, setFocused] = useState(false);
+  const [focused, setFocused] = React.useState(false);
 
   const getFlexDirection = () => {
     if (icon && iconPosition) {
@@ -29,13 +29,13 @@ const Input = ({
     if (error) {
       return colors.danger;
     }
+
     if (focused) {
       return colors.primary;
     } else {
       return colors.grey;
     }
   };
-
   return (
     <View style={styles.inputContainer}>
       {label && <Text>{label}</Text>}
@@ -52,14 +52,17 @@ const Input = ({
           style={[styles.textInput, style]}
           onChangeText={onChangeText}
           value={value}
-          onFocus={() => setFocused(true)}
+          onFocus={() => {
+            setFocused(true);
+          }}
           onBlur={() => {
             setFocused(false);
           }}
           {...props}
         />
       </View>
-      {error && <Text style={styles.error}> {error} </Text>}
+
+      {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
 };

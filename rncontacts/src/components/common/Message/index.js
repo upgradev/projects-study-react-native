@@ -1,26 +1,24 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
+import React from 'react';
+import {useCallback} from 'react';
+import {useEffect} from 'react';
+import {View, Text, TextInput, ActivityIndicator} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {color} from 'react-native-reanimated';
 import colors from '../../../assets/theme/colors';
 import styles from './styles';
 
 const Message = ({
   message,
+  onDismiss,
   retry,
   retryFn,
-  onDismiss,
   primary,
   danger,
-  success,
   info,
-  onPress,
+  success,
 }) => {
-  const [userDismissed, setUserDismissed] = useState(false);
+  const [userDismissed, setDismissed] = React.useState(false);
 
   const getBgColor = () => {
     if (primary) {
@@ -32,17 +30,22 @@ const Message = ({
     if (success) {
       return colors.success;
     }
+
     if (info) {
       return colors.secondary;
     }
   };
-
   return (
     <>
       {userDismissed ? null : (
         <TouchableOpacity
           style={[styles.wrapper, {backgroundColor: getBgColor()}]}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}>
             <Text
               style={{
                 color: colors.white,
@@ -50,7 +53,7 @@ const Message = ({
               {message}
             </Text>
 
-            {retry && !typeof onDismiss === 'function' && (
+            {retry && typeof onDismiss !== 'function' && (
               <TouchableOpacity onPress={retryFn}>
                 <Text
                   style={{
@@ -60,10 +63,11 @@ const Message = ({
                 </Text>
               </TouchableOpacity>
             )}
+
             {typeof onDismiss === 'function' && (
               <TouchableOpacity
                 onPress={() => {
-                  setUserDismissed(true);
+                  setDismissed(true);
                   onDismiss();
                 }}>
                 <Text

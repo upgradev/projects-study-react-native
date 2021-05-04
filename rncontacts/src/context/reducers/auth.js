@@ -13,21 +13,19 @@ const auth = (state, {type, payload}) => {
   switch (type) {
     case LOGIN_LOADING:
     case REGISTER_LOADING:
-      // console.log("stete", state);
       return {
         ...state,
         loading: true,
       };
 
     case REGISTER_SUCCESS:
-      // console.log("stete", state);
       return {
         ...state,
         loading: false,
         data: payload,
       };
+
     case LOGIN_SUCCESS:
-      // console.log("stete", state);
       return {
         ...state,
         loading: false,
@@ -35,9 +33,16 @@ const auth = (state, {type, payload}) => {
         isLoggedIn: true,
       };
 
-    case LOGIN_FAIL:
+    case LOGOUT_USER:
+      return {
+        ...state,
+        loading: false,
+        data: null,
+        isLoggedIn: false,
+      };
+
     case REGISTER_FAIL:
-      // console.log("stete", state);
+    case LOGIN_FAIL:
       return {
         ...state,
         loading: false,
@@ -45,19 +50,11 @@ const auth = (state, {type, payload}) => {
       };
 
     case CLEAR_AUTH_STATE:
-      // console.log("stete", state);
       return {
         ...state,
         loading: false,
         data: null,
         error: null,
-      };
-    case LOGOUT_USER:
-      return {
-        ...state,
-        loading: false,
-        data: null,
-        isLoggedIn: false,
       };
 
     default:

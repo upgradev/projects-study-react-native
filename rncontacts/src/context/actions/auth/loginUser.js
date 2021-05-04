@@ -4,31 +4,31 @@ import {
   LOGIN_LOADING,
   LOGIN_SUCCESS,
 } from '../../../constants/actionTypes';
-import axiosIntance from '../../../helpers/axiosInterceptor';
+import axiosInstance from '../../../helpers/axiosInstance';
 
-export default ({password, userName: username}) => dispatch => {
+export default ({password, userName: username}) => (dispatch) => {
   dispatch({
     type: LOGIN_LOADING,
   });
-  axiosIntance
-    .post('/auth/login', {
+  axiosInstance
+    .post('auth/login', {
       password,
       username,
     })
-    .then(res => {
-      AsyncStorage.setItem("token", res.data.token)
-      AsyncStorage.setItem("user", JSON.stringify(res.data.user))
+    .then((res) => {
+      AsyncStorage.setItem('token', res.data.token);
+      AsyncStorage.setItem('user', JSON.stringify(res.data.user));
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch({
         type: LOGIN_FAIL,
         payload: err.response
           ? err.response.data
-          : {error: 'something went wrong, try again'},
+          : {error: 'Something went wrong, try agin'},
       });
     });
 };

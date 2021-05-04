@@ -4,9 +4,9 @@ import {
   REGISTER_SUCCESS,
   CLEAR_AUTH_STATE,
 } from '../../../constants/actionTypes';
-import axiosIntance from '../../../helpers/axiosInterceptor';
+import axiosInstance from '../../../helpers/axiosInstance';
 
-export const clearAuthState = () => dispatch => {
+export const clearAuthState = () => (dispatch) => {
   dispatch({
     type: CLEAR_AUTH_STATE,
   });
@@ -18,31 +18,32 @@ export default ({
   userName: username,
   firstName: first_name,
   lastName: last_name,
-}) => dispatch => onSucess => {
+}) => (dispatch) => (onSuccess) => {
   dispatch({
     type: REGISTER_LOADING,
   });
-  axiosIntance
-    .post('/auth/register', {
+  axiosInstance
+    .post('auth/register', {
       email,
       password,
       username,
       first_name,
       last_name,
     })
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
-      onSucess(res.data);
+
+      onSuccess(res.data);
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch({
         type: REGISTER_FAIL,
         payload: err.response
           ? err.response.data
-          : {error: 'something went wrong, try again'},
+          : {error: 'Something went wrong, try agin'},
       });
     });
 };

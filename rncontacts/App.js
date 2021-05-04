@@ -6,9 +6,10 @@
  * @flow strict-local
  */
 
+import 'react-native-gesture-handler';
 import React from 'react';
-import GlobalProvider from './src/context/Provider';
 import AppNavContainer from './src/navigations';
+import GlobalProvider from './src/context/Provider';
 
 const App = () => {
   return (

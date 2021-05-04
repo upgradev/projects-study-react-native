@@ -1,18 +1,17 @@
 import React from 'react';
 import {
-  View,
-  Text,
-  Alert,
-  SafeAreaView,
   Image,
+  Alert,
   TouchableOpacity,
+  SafeAreaView,
+  Text,
+  View,
 } from 'react-native';
 import Container from '../../components/common/Container';
-import {LOGOUT_USER} from '../../constants/actionTypes';
 import {SETTINGS} from '../../constants/routeNames';
 import logoutUser from '../../context/actions/auth/logoutUser';
 import styles from './styles';
-import MaterialIcons from '../../components/common/Icon';
+import Icon from '../../components/common/Icon';
 
 const SideMenu = ({navigation, authDispatch}) => {
   const handleLogout = () => {
@@ -22,10 +21,11 @@ const SideMenu = ({navigation, authDispatch}) => {
         text: 'Cancel',
         onPress: () => {},
       },
+
       {
-        text: 'Ok',
+        text: 'OK',
         onPress: () => {
-          logoutUser(LOGOUT_USER)(authDispatch);
+          logoutUser()(authDispatch);
         },
       },
     ]);
@@ -33,19 +33,18 @@ const SideMenu = ({navigation, authDispatch}) => {
 
   const menuItems = [
     {
-      icon: <MaterialIcons type="material" size={17} name="settings"></MaterialIcons>,
+      icon: <Icon type="fontisto" size={17} name="player-settings" />,
       name: 'Settings',
       onPress: () => {
         navigation.navigate(SETTINGS);
       },
     },
     {
-      icon: <MaterialIcons type="material" size={17} name="logout"></MaterialIcons>,
+      icon: <Icon type="material" size={17} name="logout" />,
       name: 'Logout',
       onPress: handleLogout,
     },
   ];
-
   return (
     <SafeAreaView>
       <Container>
@@ -56,11 +55,10 @@ const SideMenu = ({navigation, authDispatch}) => {
           style={styles.logoImage}
         />
 
-        <View style={{paddingHorizontal: 70}}>
+        <View style={{paddingHorizontal: 30}}>
           {menuItems.map(({name, icon, onPress}) => (
             <TouchableOpacity onPress={onPress} key={name} style={styles.item}>
-              {icon}
-
+              <View style={styles.icon}>{icon}</View>
               <Text style={styles.itemText}>{name}</Text>
             </TouchableOpacity>
           ))}
