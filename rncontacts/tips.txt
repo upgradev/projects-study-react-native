@@ -13,4 +13,6 @@ yarn add @react-navigation/stack
 ------------ Drawer navigation
 yarn add @react-navigation/drawer
 
-
+------------ This babel plugin lets you inject your 
+environment variables into your react-native environment using dotenv for multiple environments.
+yarn add react-native-dotenv

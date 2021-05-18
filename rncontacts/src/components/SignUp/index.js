@@ -7,7 +7,7 @@ import Input from '../common/Input';
 import {useNavigation} from '@react-navigation/core';
 import {LOGIN} from '../../constants/routeNames';
 
-const RegisterComponent = () => {
+const RegisterComponent = ({onSubmit, onChange, form, errors}) => {
   const {navigate} = useNavigation();
 
   return (
@@ -28,28 +28,32 @@ const RegisterComponent = () => {
             label="Username"
             iconPosition="right"
             placeholder="Enter username"
-            // error={"This field is required"}
+            onChangeText={value => onChange({name: 'userName', value: value})}
+            error={errors.userName}
           />
 
           <Input
             label="Firstname"
             iconPosition="right"
             placeholder="Enter first name"
-            // error={"This field is required"}
+            onChangeText={value => onChange({name: 'firstName', value: value})}
+            error={errors.firstName}
           />
 
           <Input
             label="Lastname"
             iconPosition="right"
             placeholder="Enter last name"
-            // error={"This field is required"}
+            onChangeText={value => onChange({name: 'lastName', value: value})}
+            error={errors.lastName}
           />
 
           <Input
             label="Email"
             iconPosition="right"
             placeholder="Enter Email"
-            // error={"This field is required"}
+            onChangeText={value => onChange({name: 'email', value: value})}
+            error={errors.email}
           />
 
           <Input
@@ -58,9 +62,11 @@ const RegisterComponent = () => {
             secureTextEntry={true}
             icon={<Text>Show</Text>}
             iconPosition="right"
+            onChangeText={value => onChange({name: 'password', value: value})}
+            error={errors.password}
           />
 
-          <CustomButton primary title="Submit" />
+          <CustomButton onPress={onSubmit} primary title="Submit" />
 
           <View style={styles.createSection}>
             <Text style={styles.infoText}>Already have a account?</Text>
