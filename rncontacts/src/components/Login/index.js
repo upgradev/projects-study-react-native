@@ -6,6 +6,7 @@ import CustomButton from '../common/CustomButton';
 import Input from '../common/Input';
 import {useNavigation} from '@react-navigation/core';
 import {REGISTER} from '../../constants/routeNames';
+import Message from '../common/Message';
 
 const Login = () => {
   const {navigate} = useNavigation();
@@ -22,6 +23,17 @@ const Login = () => {
       <View>
         <Text style={styles.title}>Welcome to RNContacts</Text>
         <Text style={styles.subTitle}>Please login here</Text>
+
+        <Message
+          retry
+          retryFn={() => console.log('Hello world')}
+          message="Invalid credentials"
+          primary
+          onDismiss={() => {}}
+        />
+        {/* <Message message="Invalid credentials" danger />
+        <Message message="Invalid credentials" info />
+        <Message message="Invalid credentials" success /> */}
 
         <View style={styles.form}>
           <Input
