@@ -1,0 +1,12 @@
+----------react navigator
+yarn add @react-navigation/native
+
+yarn add react-native-reanimated react-native-gesture-handler react-native-screens 
+react-native-safe-area-context @react-native-community/masked-view
+
+npm install @react-navigation/stack
+
+-------------icons
+https://github.com/oblador/react-native-vector-icons
+npm install --save react-native-vector-icons
+https://oblador.github.io/react-native-vector-icons/
