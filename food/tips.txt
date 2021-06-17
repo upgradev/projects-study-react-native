@@ -6,6 +6,11 @@ react-native-safe-area-context @react-native-community/masked-view
 
 npm install @react-navigation/stack
 
+--- for navigation.navigate and props
+https://reactnavigation.org/docs/compatibility/
+yarn add @react-navigation/native @react-navigation/compat @react-navigation/stack
+
+
 -------------icons
 https://github.com/oblador/react-native-vector-icons
 npm install --save react-native-vector-icons

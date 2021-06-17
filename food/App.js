@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SearchScreen from './src/screens/SearchScreen';
 import {ScrollView, SafeAreaView} from 'react-native';
 import HeaderScrollView from 'react-native-header-scroll-view';
+import ResultsShowScreen from './src/screens/ResultsShowScreen';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ const App = () => {
           headerTitleAlign: 'center',
         }}>
           <Stack.Screen name="Search" component={SearchScreen} />
+          <Stack.Screen name="ResultsShowScreen" component={ResultsShowScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
